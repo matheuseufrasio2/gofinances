@@ -148,66 +148,70 @@ export function Dashboard() {
 
   return (
     <Container>
-      <ActivityIndicator />
       {
-        isLoading ?
+        isLoading ? (
           <LoadContainer>
             <ActivityIndicator
               color={theme.colors.primary}
               size="large"
             />
-          </LoadContainer> :
-          <>
-            <Header>
-              <UserWrapper>
-                <UserInfo>
-                  <Photo source={{ uri: 'https://avatars.githubusercontent.com/u/49957773?v=4' }} />
-                  <User>
-                    <UserGretting>Olá,</UserGretting>
-                    <UserName>Matheus</UserName>
-                  </User>
-                </UserInfo>
-                <LogoutButton
-                  onPress={() => { }}
-                >
-                  <Icon name="power" />
-                </LogoutButton>
-              </UserWrapper>
-            </Header>
+          </LoadContainer>
+        )
+          :
+          (
+            <>
+              <Header>
+                <UserWrapper>
+                  <UserInfo>
+                    <Photo source={{ uri: 'https://avatars.githubusercontent.com/u/49957773?v=4' }} />
+                    <User>
+                      <UserGretting>Olá,</UserGretting>
+                      <UserName>Matheus</UserName>
+                    </User>
+                  </UserInfo>
+                  <LogoutButton
+                    onPress={() => { }}
+                  >
+                    <Icon name="power" />
+                  </LogoutButton>
+                </UserWrapper>
+              </Header>
 
-            <HighlightCards>
-              <HighlightCard
-                type="up"
-                title="Entrada"
-                amount={highLightData.entries.amount}
-                lastTransaction={highLightData.entries.lastTransaction}
-              />
+              <HighlightCards>
+                <HighlightCard
+                  type="up"
+                  title="Entrada"
+                  amount={highLightData.entries.amount}
+                  lastTransaction={highLightData.entries.lastTransaction}
+                />
 
-              <HighlightCard
-                type="down"
-                title="Saídas"
-                amount={highLightData.outgoings.amount}
-                lastTransaction={highLightData.outgoings.lastTransaction}
-              />
+                <HighlightCard
+                  type="down"
+                  title="Saídas"
+                  amount={highLightData.outgoings.amount}
+                  lastTransaction={highLightData.outgoings.lastTransaction}
+                />
 
-              <HighlightCard
-                type="total"
-                title="Total"
-                amount={highLightData.total.amount}
-                lastTransaction={highLightData.total.lastTransaction}
-              />
-            </HighlightCards>
+                <HighlightCard
+                  type="total"
+                  title="Total"
+                  amount={highLightData.total.amount}
+                  lastTransaction={highLightData.total.lastTransaction}
+                />
+              </HighlightCards>
 
-            <Transactions>
-              <Title>Listagens</Title>
+              <Transactions>
+                <Title>Listagens</Title>
 
-              <TransactionsList
-                data={transactions}
-                keyExtractor={item => item.id}
-                renderItem={({ item }) => <TransactionCard data={item} />}
-              />
-            </Transactions>
-          </>
+                <TransactionsList
+                  data={transactions}
+                  keyExtractor={item => item.id}
+                  renderItem={({ item }) => <TransactionCard data={item} />}
+                />
+              </Transactions>
+            </>
+          )
+
       }
 
     </Container>
